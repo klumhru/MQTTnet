@@ -59,11 +59,11 @@ namespace MQTTnet.Implementations
 
                 await clientWebSocket.ConnectAsync(new Uri(uri), cancellationToken).ConfigureAwait(false);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 // Prevent a memory leak when always creating new instance which will fail while connecting.
                 clientWebSocket.Dispose();
-                throw;
+                throw ex;
             }
 
             _webSocket = clientWebSocket;
@@ -114,7 +114,6 @@ namespace MQTTnet.Implementations
 
         void SetupClientWebSocket(ClientWebSocket clientWebSocket)
         {
-
             if (_options.ProxyOptions != null)
             {
                 clientWebSocket.Options.Proxy = CreateProxy();

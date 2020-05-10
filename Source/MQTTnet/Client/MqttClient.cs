@@ -121,7 +121,7 @@ namespace MQTTnet.Client
                 var connectedHandler = ConnectedHandler;
                 if (connectedHandler != null)
                 {
-                    await connectedHandler.HandleConnectedAsync(new MqttClientConnectedEventArgs(authenticateResult)).ConfigureAwait(false);
+                    await connectedHandler.HandleConnectedAsync(new MqttClientConnectedEventArgs(authenticateResult));
                 }
 
                 return authenticateResult;
